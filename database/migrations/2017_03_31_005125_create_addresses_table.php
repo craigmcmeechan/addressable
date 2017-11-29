@@ -27,9 +27,11 @@ class CreateAddressesTable extends Migration
             $table->string('postal_code')->nullable();
             $table->float('lat')->nullable();
             $table->float('lng')->nullable();
+            $table->integer('mapzoom')->nullable();
             $table->boolean('is_primary')->default(false);
             $table->boolean('is_billing')->default(false);
             $table->boolean('is_shipping')->default(false);
+            $table->boolean('is_property')->default(false);
             $table->timestamps();
         });
     }
