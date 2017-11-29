@@ -24,9 +24,11 @@ namespace Rinvex\Addresses\Contracts;
  * @property string                                             $postal_code
  * @property float                                              $lat
  * @property float                                              $lng
+ * @property int                                                $mapzoom
  * @property bool                                               $is_primary
  * @property bool                                               $is_billing
  * @property bool                                               $is_shipping
+ * @property bool                                               $is_property
  * @property \Carbon\Carbon                                     $created_at
  * @property \Carbon\Carbon                                     $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $addressable
@@ -36,6 +38,7 @@ namespace Rinvex\Addresses\Contracts;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isBilling()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isPrimary()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isShipping()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isProperty()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address outside($distance, $measurement = null, $lat = null, $lng = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableType($value)
@@ -47,6 +50,7 @@ namespace Rinvex\Addresses\Contracts;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsBilling($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsPrimary($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsShipping($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsProprty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLabel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLat($value)
