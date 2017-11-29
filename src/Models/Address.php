@@ -32,9 +32,11 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @property string                                             $postal_code
  * @property float                                              $lat
  * @property float                                              $lng
+ * @property int                                                $mapzoom
  * @property bool                                               $is_primary
  * @property bool                                               $is_billing
  * @property bool                                               $is_shipping
+ * @property bool                                               $is_property
  * @property \Carbon\Carbon                                     $created_at
  * @property \Carbon\Carbon                                     $updated_at
  * @property-read \Illuminate\Database\Eloquent\Model|\Eloquent $addressable
@@ -44,6 +46,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isBilling()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isPrimary()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isShipping()
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address isProperty()
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address outside($distance, $measurement = null, $lat = null, $lng = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereAddressableType($value)
@@ -55,6 +58,7 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsBilling($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsPrimary($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsShipping($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereIsProperty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLabel($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLastName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\Rinvex\Addresses\Models\Address whereLat($value)
@@ -96,9 +100,11 @@ class Address extends Model implements AddressContract
         'postal_code',
         'lat',
         'lng',
+        'mapzoom',
         'is_primary',
         'is_billing',
         'is_shipping',
+        'is_property',
     ];
 
     /**
@@ -121,9 +127,11 @@ class Address extends Model implements AddressContract
         'postal_code' => 'string',
         'lat' => 'float',
         'lng' => 'float',
+        'mapzoom' => 'integer',
         'is_primary' => 'boolean',
         'is_billing' => 'boolean',
         'is_shipping' => 'boolean',
+        'is_property' => 'boolean',
         'deleted_at' => 'datetime',
     ];
 
@@ -177,9 +185,11 @@ class Address extends Model implements AddressContract
             'postal_code' => 'nullable|string|max:150',
             'lat' => 'nullable|numeric',
             'lng' => 'nullable|numeric',
+            'mapzoom' => 'nullable|numeric',
             'is_primary' => 'sometimes|boolean',
             'is_billing' => 'sometimes|boolean',
             'is_shipping' => 'sometimes|boolean',
+            'is_property' => 'sometimes|boolean',
         ]);
     }
 
@@ -227,6 +237,18 @@ class Address extends Model implements AddressContract
     public function scopeIsShipping(Builder $builder): Builder
     {
         return $builder->where('is_shipping', true);
+    }
+    
+    /**
+     * Scope shipping addresses.
+     *
+     * @param \Illuminate\Database\Eloquent\Builder $builder
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeIsProperty(Builder $builder): Builder
+    {
+        return $builder->where('is_property', true);
     }
 
     /**
