@@ -15,6 +15,6 @@ return [
     ],
 
     // Addresses Geocoding Options
-    'geocoding' => false,
+    'geocoding' => true,
 
 ];
